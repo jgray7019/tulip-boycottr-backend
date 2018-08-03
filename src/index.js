@@ -27,7 +27,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+})
 
 //1. bring in our external router
 const boycottLocationsRouter = require('./routes/BoycottLocations/boycottLocationsRouter');
